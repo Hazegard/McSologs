@@ -2,12 +2,17 @@ package main
 
 import (
 	"github.com/nxadm/tail"
+	"io"
 	"mc_so_logs/RegexParser"
 	"mc_so_logs/structs/Message"
 )
 
 func Read(messageChan chan<- string) {
-	t, err := tail.TailFile("./mc.logs", tail.Config{Follow: true, ReOpen: true})
+	t, err := tail.TailFile("./mc.logs", tail.Config{
+		Follow:   true,
+		ReOpen:   true,
+		Location: &tail.SeekInfo{Offset: 0, Whence: io.SeekEnd},
+	})
 	if err != nil {
 		panic(err)
 	}
