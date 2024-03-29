@@ -11,7 +11,7 @@ func main() {
 	logFile := ""
 	notifyUrlFIle := ""
 	flag.StringVarP(&logFile, "log-file", "f", "", "Log File to monitor")
-	flag.StringVarP(&notifyUrlFIle, "config", "c", "", "Log File to monitor")
+	flag.StringVarP(&notifyUrlFIle, "config", "c", "", "Config file containing the webhook url")
 	flag.Parse()
 	c, err := config.NewConfig(logFile, notifyUrlFIle)
 	if err != nil {
