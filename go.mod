@@ -1,6 +1,6 @@
-module mc_so_logs
+module github.com/Hazegard/McSoLogs
 
-go 1.22
+go 1.21
 
 require (
 	github.com/containrrr/shoutrrr v0.8.0

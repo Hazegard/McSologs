@@ -1,7 +1,7 @@
-package RegexParser
+package regexParser
 
 import (
-	"mc_so_logs/structs/Message"
+	"github.com/Hazegard/McSoLogs/structs/message"
 	"regexp"
 )
 
@@ -14,12 +14,12 @@ func init() {
 	}
 }
 
-func newDeathMessageFromRegex(regexResult map[string]string) Message.Message {
-	return Message.NewDeathMessage(regexResult["dead_player"], regexResult["message"])
+func newDeathMessageFromRegex(regexResult map[string]string) message.Message {
+	return message.NewDeathMessage(regexResult["dead_player"], regexResult["message"])
 }
 
-func ParseDeath(line string) Message.Message {
-	var mes Message.Message
+func ParseDeath(line string) message.Message {
+	var mes message.Message
 	for _, regexe := range deathRegexes {
 		isFound, result := mapRegexGroupMatch(regexe, line)
 		if isFound {

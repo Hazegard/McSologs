@@ -1,4 +1,4 @@
-package RegexParser
+package regexParser
 
 import "regexp"
 

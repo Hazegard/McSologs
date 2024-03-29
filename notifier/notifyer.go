@@ -1,8 +1,8 @@
-package Notifier
+package notifier
 
 import (
+	"github.com/Hazegard/McSoLogs/config"
 	"github.com/containrrr/shoutrrr"
-	"mc_so_logs/config"
 	"time"
 )
 

@@ -1,10 +1,10 @@
 package main
 
 import (
+	"github.com/Hazegard/McSoLogs/regexParser"
+	"github.com/Hazegard/McSoLogs/structs/message"
 	"github.com/nxadm/tail"
 	"io"
-	"mc_so_logs/RegexParser"
-	"mc_so_logs/structs/Message"
 )
 
 func Read(messageChan chan<- string) {
@@ -26,24 +26,24 @@ func Read(messageChan chan<- string) {
 	}
 }
 
-func HandleLine(line string) Message.Message {
-	var mes Message.Message
-	mes = RegexParser.ParseDeath(line)
+func HandleLine(line string) message.Message {
+	var mes message.Message
+	mes = regexParser.ParseDeath(line)
 	if mes != nil {
 		return mes
 	}
 
-	mes = RegexParser.ParseAdvancement(line)
+	mes = regexParser.ParseAdvancement(line)
 	if !mes.IsEmpty() {
 		return mes
 	}
 
-	mes = RegexParser.ParseLogout(line)
+	mes = regexParser.ParseLogout(line)
 	if !mes.IsEmpty() {
 		return mes
 	}
 
-	mes = RegexParser.ParseLogin(line)
+	mes = regexParser.ParseLogin(line)
 	if !mes.IsEmpty() {
 		return mes
 	}

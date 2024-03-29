@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
+	"github.com/Hazegard/McSoLogs/config"
+	"github.com/Hazegard/McSoLogs/notifier"
 	flag "github.com/spf13/pflag"
-	"mc_so_logs/Notifier"
-	"mc_so_logs/config"
 )
 
 func main() {
@@ -17,7 +17,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	notifier := Notifier.NewNotifier(c)
+	notifier := notifier.NewNotifier(c)
 	var messages chan string = make(chan string)
 	defer close(messages)
 

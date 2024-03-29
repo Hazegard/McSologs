@@ -1,4 +1,4 @@
-package RegexParser
+package regexParser
 
 var deathMessages = []string{
 	`(?P<dead_player>.*?) was pricked to death`,
