@@ -21,7 +21,7 @@ func main() {
 	var messages chan string = make(chan string)
 	defer close(messages)
 
-	go Read(messages)
+	go Read(c.LogFile, messages)
 
 	for m := range messages {
 		err := notifier.Notify(m)

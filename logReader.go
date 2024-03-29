@@ -7,8 +7,8 @@ import (
 	"io"
 )
 
-func Read(messageChan chan<- string) {
-	t, err := tail.TailFile("./mc.logs", tail.Config{
+func Read(logFile string, messageChan chan<- string) {
+	t, err := tail.TailFile(logFile, tail.Config{
 		Follow:   true,
 		ReOpen:   true,
 		Location: &tail.SeekInfo{Offset: 0, Whence: io.SeekEnd},
