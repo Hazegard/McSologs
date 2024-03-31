@@ -30,14 +30,12 @@ func NewConfig(logFile string, configFileName string, debug bool) (*Config, erro
 	if err != nil {
 		return nil, err
 	}
-	fmt.Printf("%+v\n", parsedConfig)
 	c = &Config{
 		LogFile:    logFile,
 		DiscordUrl: parsedConfig.DiscordUrl,
 		Players:    parsedConfig.Players,
 		Debug:      debug,
 	}
-	fmt.Printf("%+v\n", c)
 	return c, nil
 }
 
@@ -53,7 +51,6 @@ type configFile struct {
 func parseConfigFile(configFilename string) (error, *configFile) {
 	var parsedConfig *configFile
 	data, err := os.ReadFile(configFilename)
-	fmt.Println(string(data))
 	if err != nil {
 		return fmt.Errorf("error while reading config file %s: %s", configFilename, err), nil
 	}
