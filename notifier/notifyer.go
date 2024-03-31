@@ -2,8 +2,8 @@ package notifier
 
 import (
 	"fmt"
-	"github.com/Hazegard/McSoLogs/config"
-	"github.com/Hazegard/McSoLogs/structs/message"
+	"github.com/Hazegard/mcsologs/config"
+	"github.com/Hazegard/mcsologs/structs/message"
 	"github.com/containrrr/shoutrrr"
 	"github.com/containrrr/shoutrrr/pkg/router"
 	"github.com/containrrr/shoutrrr/pkg/types"

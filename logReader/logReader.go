@@ -1,9 +1,9 @@
 package logReader
 
 import (
-	"github.com/Hazegard/McSoLogs/config"
-	"github.com/Hazegard/McSoLogs/regexParser"
-	"github.com/Hazegard/McSoLogs/structs/message"
+	"github.com/Hazegard/mcsologs/config"
+	"github.com/Hazegard/mcsologs/regexParser"
+	"github.com/Hazegard/mcsologs/structs/message"
 	"github.com/nxadm/tail"
 	"io"
 )

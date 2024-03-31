@@ -2,7 +2,7 @@ package message
 
 import (
 	"fmt"
-	"github.com/Hazegard/McSoLogs/config"
+	"github.com/Hazegard/mcsologs/config"
 	"strings"
 )
 

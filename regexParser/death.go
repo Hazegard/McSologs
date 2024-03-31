@@ -1,7 +1,7 @@
 package regexParser
 
 import (
-	"github.com/Hazegard/McSoLogs/structs/message"
+	"github.com/Hazegard/mcsologs/structs/message"
 	"regexp"
 	"strings"
 )

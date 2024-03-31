@@ -1,4 +1,4 @@
-module github.com/Hazegard/McSoLogs
+module github.com/Hazegard/mcsologs
 
 go 1.21
 

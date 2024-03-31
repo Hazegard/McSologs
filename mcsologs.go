@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github.com/Hazegard/McSoLogs/config"
-	logReader "github.com/Hazegard/McSoLogs/logReader"
-	"github.com/Hazegard/McSoLogs/notifier"
+	"github.com/Hazegard/mcsologs/config"
+	"github.com/Hazegard/mcsologs/logReader"
+	"github.com/Hazegard/mcsologs/notifier"
 	flag "github.com/spf13/pflag"
 	"os"
 )
