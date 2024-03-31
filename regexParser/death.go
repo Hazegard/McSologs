@@ -3,6 +3,7 @@ package regexParser
 import (
 	"github.com/Hazegard/McSoLogs/structs/message"
 	"regexp"
+	"strings"
 )
 
 var deathRegexes []*regexp.Regexp
@@ -20,6 +21,9 @@ func newDeathMessageFromRegex(regexResult map[string]string) message.Message {
 
 func ParseDeath(line string) message.Message {
 	var mes message.Message
+	if strings.Contains(line, "Villager class") {
+		return mes
+	}
 	for _, regexe := range deathRegexes {
 		isFound, result := mapRegexGroupMatch(regexe, line)
 		if isFound {
