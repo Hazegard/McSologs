@@ -13,11 +13,13 @@ type Message interface {
 	GetTitle() string
 }
 
-func MapPlayer(message string, players ...string) string {
+// mapPLayer returns the input message and replace the player Minecraft username by the
+// corresponding discord ID
+func mapPlayer(message string, players ...string) string {
 	playerMapper := config.GetConfig().Players
 	mes := message
 	for _, player := range players {
-		mes = strings.ReplaceAll(mes, player, fmt.Sprintf("<@%s>", playerMapper.Get(player)))
+		mes = strings.ReplaceAll(mes, player, playerMapper.Get(player))
 		fmt.Println(mes)
 	}
 	return mes

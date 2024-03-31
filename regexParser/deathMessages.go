@@ -1,5 +1,7 @@
 package regexParser
 
+// deathMessages holds the regexes used to parse the deaths
+// parsed from https://minecraft.fandom.com/wiki/Death_messages
 var deathMessages = []string{
 	`(?P<dead_player>.*?) blew up`,
 	`(?P<dead_player>.*?) burned to death`,

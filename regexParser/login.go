@@ -5,13 +5,18 @@ import (
 	"regexp"
 )
 
+// loginRegex is the regex used to parse player log in in the log file
 var loginRegex = regexp.MustCompile(` (?P<player>\S*?) joined the game`)
 
-func newLoginMessageFromRegex(regexResult map[string]string) message.LoginMessage {
+// newLoginMessageFromRegex returns the Message struct corresponding to an achievement
+// from the parsed regex groups
+func newLoginMessageFromRegex(regexResult RegexResult) message.LoginMessage {
 	return message.NewLoginMessage(regexResult["player"])
 }
 
+// ParseLogin parse the line using the loginRegex
+// and returns the Message struct corresponding
 func ParseLogin(line string) message.Message {
-	_, result := mapRegexGroupMatch(loginRegex, line)
+	result := mapRegexGroupMatch(loginRegex, line)
 	return newLoginMessageFromRegex(result)
 }
