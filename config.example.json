@@ -1,0 +1,9 @@
+{
+  "discordUrl": "discord://[TOKEN]@[WEBHOOS_ID]",
+  "players": {
+    "MC_PLAYER_NAME1": "DISCORD_PLAYER1_ID",
+    "MC_PLAYER_NAME2": "DISCORD_PLAYER2_ID",
+    "MC_PLAYER_NAME3": "DISCORD_PLAYER3_ID",
+    "MC_PLAYER_NAME4": "DISCORD_PLAYER4_ID"
+  }
+}
