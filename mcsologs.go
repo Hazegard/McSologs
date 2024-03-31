@@ -9,14 +9,15 @@ import (
 )
 
 func main() {
+
 	logFile := ""
-	notifyUrlFIle := ""
+	configFile := ""
 	debug := false
 	flag.StringVarP(&logFile, "log-file", "f", "", "Log File to monitor")
-	flag.StringVarP(&notifyUrlFIle, "config", "c", "", "Config file containing the webhook url")
-	flag.BoolVar(&debug, "reread", false, "Re-read the current file (used for debugging purpose)")
+	flag.StringVarP(&configFile, "config", "c", "", "Config file containing the webhook url")
+	flag.BoolVar(&debug, "debug", false, "Re-read the current file (used for debugging purpose)")
 	flag.Parse()
-	c, err := config.NewConfig(logFile, notifyUrlFIle, debug)
+	c, err := config.NewConfig(logFile, configFile, debug)
 	if err != nil {
 		panic(err)
 	}

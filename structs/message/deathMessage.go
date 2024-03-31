@@ -1,16 +1,13 @@
 package message
 
-import (
-	"fmt"
-)
-
 type DeathMessage struct {
 	Message    string
 	DeadPlayer string
+	Killer     string
 }
 
-func NewDeathMessage(name, message string) Message {
-	return DeathMessage{Message: message, DeadPlayer: name}
+func NewDeathMessage(name string, killer string, message string) Message {
+	return DeathMessage{Message: message, DeadPlayer: name, Killer: killer}
 }
 
 func (m DeathMessage) IsEmpty() bool {
@@ -18,5 +15,13 @@ func (m DeathMessage) IsEmpty() bool {
 }
 
 func (m DeathMessage) GetMessage() string {
-	return fmt.Sprintf("GG %s!\n%s", m.DeadPlayer, m.Message)
+	return MapPlayer(m.Message, m.Killer, m.DeadPlayer)
+}
+
+func (m DeathMessage) GetTitle() string {
+	return "RIP"
+}
+
+func (m DeathMessage) GetWHColor() string {
+	return "0xDC143C"
 }

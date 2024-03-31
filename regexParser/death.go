@@ -15,7 +15,7 @@ func init() {
 }
 
 func newDeathMessageFromRegex(regexResult map[string]string) message.Message {
-	return message.NewDeathMessage(regexResult["dead_player"], regexResult["message"])
+	return message.NewDeathMessage(regexResult["dead_player"], regexResult["killer"], regexResult["message"])
 }
 
 func ParseDeath(line string) message.Message {

@@ -19,3 +19,11 @@ func (m LoginMessage) IsEmpty() bool {
 func (m LoginMessage) GetMessage() string {
 	return fmt.Sprintf("%s joined the game", m.Player)
 }
+
+func (m LoginMessage) GetTitle() string {
+	return "Welcome"
+}
+
+func (m LoginMessage) GetWHColor() string {
+	return "0x7CFC00"
+}

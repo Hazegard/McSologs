@@ -9,7 +9,7 @@ import (
 )
 
 type LogReader struct {
-	messageChan chan string
+	messageChan chan message.Message
 	doReadFile  bool
 	tailFile    tail.Tail
 	logFile     string
@@ -17,7 +17,7 @@ type LogReader struct {
 
 func NewLogReader(c *config.Config) *LogReader {
 	return &LogReader{
-		messageChan: make(chan string),
+		messageChan: make(chan message.Message),
 		doReadFile:  c.Debug,
 		logFile:     c.LogFile,
 	}
@@ -31,7 +31,7 @@ func (l *LogReader) TailFile() {
 	for line := range t.Lines {
 		mes := handleLine(line.Text)
 		if mes.IsEmpty() != true {
-			l.messageChan <- mes.GetMessage()
+			l.messageChan <- mes
 		}
 	}
 	close(l.messageChan)
@@ -48,7 +48,7 @@ func (l *LogReader) generateTailConfig() tail.Config {
 	return tailConfig
 }
 
-func (l *LogReader) Message() chan string {
+func (l *LogReader) Message() chan message.Message {
 	return l.messageChan
 }
 

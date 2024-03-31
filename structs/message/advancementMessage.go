@@ -19,5 +19,18 @@ func (m AdvancementMessage) IsEmpty() bool {
 }
 
 func (m AdvancementMessage) GetMessage() string {
-	return fmt.Sprintf("%s has made the advancement: %s", m.Player, strings.ReplaceAll(m.Advancement, " ", "_"))
+	message := fmt.Sprintf("%s has made the advancement: %s", m.Player, m.getAdvancementUrl())
+	return MapPlayer(message, m.Player)
+}
+
+func (m AdvancementMessage) GetTitle() string {
+	return "Advancement"
+}
+
+func (m AdvancementMessage) GetWHColor() string {
+	return "0x00FFFF"
+}
+
+func (m AdvancementMessage) getAdvancementUrl() string {
+	return fmt.Sprintf("[%s](https://minecraft.fandom.com/wiki/Advancement#%s)", m.Advancement, strings.ReplaceAll(m.Advancement, " ", "_"))
 }
