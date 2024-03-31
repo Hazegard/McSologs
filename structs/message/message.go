@@ -15,9 +15,10 @@ type Message interface {
 
 func MapPlayer(message string, players ...string) string {
 	playerMapper := config.GetConfig().Players
-	mes := ""
+	mes := message
 	for _, player := range players {
-		mes = strings.ReplaceAll(message, player, fmt.Sprintf("<@%s>", playerMapper.Get(player)))
+		mes = strings.ReplaceAll(mes, player, fmt.Sprintf("<@%s>", playerMapper.Get(player)))
+		fmt.Println(mes)
 	}
 	return mes
 }
