@@ -1,0 +1,7 @@
+.idea
+*.logs
+*.log
+config.json
+config.example.json
+.gitignore
+README.md
