@@ -34,10 +34,19 @@ func parseConfig() *config.Config {
 	logFile := ""
 	configFile := ""
 	debug := false
-	flag.StringVarP(&logFile, "log-file", "f", "", "Log File to monitor")
-	flag.StringVarP(&configFile, "config", "c", "", "Config file containing the webhook url")
+	flag.StringVarP(&logFile, "log-file", "f", "latest.log", "Log File to monitor (required)")
+	flag.StringVarP(&configFile, "config", "c", "config.json", "Config file containing the webhook url (required)")
 	flag.BoolVar(&debug, "debug", false, "Re-read the current file (used for debugging purpose)")
 	flag.Parse()
+	if logFile == "" {
+		fmt.Println("error, log file required")
+		os.Exit(1)
+	}
+	if configFile == "" {
+		fmt.Println("error, config file required")
+		os.Exit(1)
+	}
+
 	c, err := config.NewConfig(logFile, configFile, debug)
 	if err != nil {
 		fmt.Printf("error parsing configuration: %s", err)
