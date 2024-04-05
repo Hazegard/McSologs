@@ -26,7 +26,6 @@ func NewNotifier(c *config.Config) (error, *Notifier) {
 	for _, url := range c.DiscordUrls {
 		sender, err := shoutrrr.CreateSender(url)
 		if err != nil {
-			fmt.Println(err)
 			errs = append(errs, fmt.Errorf("error while parsing discord url (%s): %s", c.DiscordUrls, err))
 			continue
 		}
