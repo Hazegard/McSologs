@@ -7,10 +7,10 @@ import (
 )
 
 type Config struct {
-	LogFile    string
-	DiscordUrl string
-	Players    playerMap
-	Debug      bool
+	LogFile     string
+	DiscordUrls []string
+	Players     playerMap
+	Debug       bool
 }
 
 // playerMap holds the matches between a Minecraft player name and the corresponding Discord ID
@@ -35,10 +35,10 @@ func NewConfig(logFile string, configFileName string, debug bool) (*Config, erro
 		return nil, err
 	}
 	c = &Config{
-		LogFile:    logFile,
-		DiscordUrl: parsedConfig.DiscordUrl,
-		Players:    parsedConfig.Players,
-		Debug:      debug,
+		LogFile:     logFile,
+		DiscordUrls: parsedConfig.DiscordUrl,
+		Players:     parsedConfig.Players,
+		Debug:       debug,
 	}
 	return c, nil
 }
@@ -49,7 +49,7 @@ func GetConfig() *Config {
 
 // configFile holds the structs used to parse the json configuration file
 type configFile struct {
-	DiscordUrl string            `json:"discordUrl,omitempty"`
+	DiscordUrl []string          `json:"discordUrls,omitempty"`
 	Players    map[string]string `json:"players,omitempty"`
 }
 

@@ -1,6 +1,7 @@
 package notifier
 
 import (
+	"errors"
 	"fmt"
 	"github.com/Hazegard/mcsologs/config"
 	"github.com/Hazegard/mcsologs/structs/message"
@@ -12,24 +13,31 @@ import (
 
 // Notifier holds the shoutrrr service used to send discord notification
 type Notifier struct {
-	Url    string
-	sender *router.ServiceRouter
-	debug  bool
+	Urls    []string
+	senders []*router.ServiceRouter
+	debug   bool
 }
 
 // NewNotifier returns the Notifier struct used to send discord notification
 // it returns an error if the discord notification URL cannot be parsed by the underlying shoutrrr
 func NewNotifier(c *config.Config) (error, *Notifier) {
-	sender, err := shoutrrr.CreateSender(c.DiscordUrl)
-	if err != nil {
-		return fmt.Errorf("error while parsing discord url (%s): %s", c.DiscordUrl, err), nil
+	var senders []*router.ServiceRouter
+	var errs []error
+	for _, url := range c.DiscordUrls {
+		sender, err := shoutrrr.CreateSender(url)
+		if err != nil {
+			errs = append(errs, fmt.Errorf("error while parsing discord url (%s): %s", c.DiscordUrls, err))
+			continue
+		}
+		senders = append(senders, sender)
 	}
 
-	return nil, &Notifier{
-		Url:    c.DiscordUrl,
-		sender: sender,
-		debug:  c.Debug,
+	return errors.Join(errs...), &Notifier{
+		Urls:    c.DiscordUrls,
+		senders: senders,
+		debug:   c.Debug,
 	}
+
 }
 
 // Notify sends a discord notification to the url configured in the struct
@@ -44,7 +52,8 @@ func (n *Notifier) Notify(message message.Message) {
 		fmt.Printf("%s (%+v)", message.GetMessage(), params)
 		return
 	}
-	n.sender.Send(message.GetMessage(), &params)
-
+	for _, sender := range n.senders {
+		sender.Send(message.GetMessage(), &params)
+	}
 	time.Sleep(500 * time.Millisecond)
 }
