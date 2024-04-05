@@ -26,10 +26,14 @@ func NewNotifier(c *config.Config) (error, *Notifier) {
 	for _, url := range c.DiscordUrls {
 		sender, err := shoutrrr.CreateSender(url)
 		if err != nil {
+			fmt.Println(err)
 			errs = append(errs, fmt.Errorf("error while parsing discord url (%s): %s", c.DiscordUrls, err))
 			continue
 		}
 		senders = append(senders, sender)
+	}
+	if len(senders) == 0 {
+		return fmt.Errorf("error, no valid webhook found"), nil
 	}
 
 	return errors.Join(errs...), &Notifier{
