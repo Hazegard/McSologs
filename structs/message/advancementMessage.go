@@ -10,6 +10,7 @@ type AdvancementType int
 const (
 	GOAL AdvancementType = iota
 	ADVANCEMENT
+	CHALLENGE
 )
 
 // AdvancementMessage holds the parsed message when an advancement is achieved by a player
@@ -29,6 +30,11 @@ func NewGoalMessage(name, advancement string) AdvancementMessage {
 	return AdvancementMessage{Advancement: advancement, Player: name, Type: GOAL}
 }
 
+// NewChallengeMessage return the struct holding the parsed message
+func NewChallengeMessage(name, advancement string) AdvancementMessage {
+	return AdvancementMessage{Advancement: advancement, Player: name, Type: CHALLENGE}
+}
+
 // IsEmpty returns whether the message is empty
 func (m AdvancementMessage) IsEmpty() bool {
 	return m.Player == ""
@@ -42,6 +48,9 @@ func (m AdvancementMessage) GetMessage() string {
 		return mapPlayer(message, m.Player)
 	case GOAL:
 		message := fmt.Sprintf("%s has reached the goal: %s", m.Player, m.getAdvancementUrl())
+		return mapPlayer(message, m.Player)
+	case CHALLENGE:
+		message := fmt.Sprintf("%s has completed the challenge: %s", m.Player, m.getAdvancementUrl())
 		return mapPlayer(message, m.Player)
 	}
 	return ""
