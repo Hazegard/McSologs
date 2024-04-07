@@ -6,9 +6,9 @@ import (
 )
 
 // advancementRegex is the regex used to parse advancement achievement in the log file
-var advancementRegex = regexp.MustCompile(` (?P<player>\S*?) has made the advancement \[(?P<advancement>.*)]`)
-var goalRegex = regexp.MustCompile(` (?P<player>\S*?) has reached the goal \[(?P<goal>.*)]`)
-var challengeRegex = regexp.MustCompile(` (?P<player>\S*?) has completed the challenge \[(?P<challenge>.*)]`)
+var advancementRegex = regexp.MustCompile(` ?(?P<player>\S*?) has made the advancement \[(?P<advancement>.*)]`)
+var goalRegex = regexp.MustCompile(` ?(?P<player>\S*?) has reached the goal \[(?P<goal>.*)]`)
+var challengeRegex = regexp.MustCompile(` ?(?P<player>\S*?) has completed the challenge \[(?P<challenge>.*)]`)
 
 // ParseAdvancement parse the line using the advancementRegex
 // and returns the Message struct corresponding
